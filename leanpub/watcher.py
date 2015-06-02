@@ -1,7 +1,7 @@
 from watchdog.observers import Observer
 from watchdog.watchmedo import observe_with
 
-from shellcommandtrick import ShellCommandTrick
+from leanpub.shellcommandtrick import ShellCommandTrick
 
 
 def pandoc_cmd(book):

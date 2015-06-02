@@ -1,7 +1,7 @@
 import argh
 from subprocess import Popen
 
-from watcher import MAKE_BOOK, MAKE_SAMPLE, watch
+from leanpub.watcher import MAKE_BOOK, MAKE_SAMPLE, watch
 
 
 def book():
