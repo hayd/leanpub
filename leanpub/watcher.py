@@ -10,9 +10,9 @@ def pandoc_cmd(book):
     is complete."""
     with open(book + ".txt") as f:
         return ('echo "Starting build of {book}.pdf"'
-                "&& pandoc {files} " +
-                "--smart --table-of-contents --chapters -o {book}.pdf;"
-                '&& echo "  {book}.pdf created."'
+                " && pandoc {files} "
+                "--smart --table-of-contents --chapters -o {book}.pdf"
+                ' && echo "  {book}.pdf created."'
                 ).format(book=book,
                          files=f.read().replace("\n", " "))
 
