@@ -9,10 +9,10 @@ def pandoc_cmd(book):
     into a pdf. This is wrapped with echos that the build has started and
     is complete."""
     with open(book + ".txt") as f:
-        return ('echo "Starting build of {book}.pdf";'
-                "pandoc {files} " +
+        return ('echo "Starting build of {book}.pdf"'
+                "&& pandoc {files} " +
                 "--smart --table-of-contents --chapters -o {book}.pdf;"
-                'echo "  {book}.pdf created."'
+                '&& echo "  {book}.pdf created."'
                 ).format(book=book,
                          files=f.read().replace("\n", " "))
 
@@ -39,9 +39,8 @@ TIMEOUT = 1.0
 def watch():
     """Watch for changes to the markdown files, and build the book and the
     sample pdf upon each change."""
-    handler = ShellCommandTrick(shell_command=MAKE_BOOK + ";" + MAKE_SAMPLE,
+    handler = ShellCommandTrick(shell_command=MAKE_BOOK + " && " + MAKE_SAMPLE,
                                 patterns=PATTERNS,
                                 terminate_on_event=True)
     observer = Observer(timeout=TIMEOUT)
     observe_with(observer, handler, DIRECTORIES, RECURSIVE)
-
