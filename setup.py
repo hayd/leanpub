@@ -3,7 +3,7 @@ from setuptools import setup
 from sys import version_info
 
 NAME = 'leanpub'
-VERSION = '0.1.2'
+VERSION = '0.2.0'
 
 
 def readme():
