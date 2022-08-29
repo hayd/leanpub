@@ -6,7 +6,7 @@
 # Until --terminate is pushed upstream in watchdog, we vendorise it.
 
 import subprocess
-from watchdog.tricks import Trick, has_attribute
+from watchdog.tricks import Trick
 
 
 class ShellCommandTrick(Trick):
@@ -48,13 +48,13 @@ class ShellCommandTrick(Trick):
         }
 
         if self.shell_command is None:
-            if has_attribute(event, 'dest_path'):
+            if hasattr(event, 'dest_path'):
                 context.update({'dest_path': event.dest_path})
                 command = 'echo "${watch_event_type} ${watch_object} from ${watch_src_path} to ${watch_dest_path}"'
             else:
                 command = 'echo "${watch_event_type} ${watch_object} ${watch_src_path}"'
         else:
-            if has_attribute(event, 'dest_path'):
+            if hasattr(event, 'dest_path'):
                 context.update({'watch_dest_path': event.dest_path})
             command = self.shell_command
 
